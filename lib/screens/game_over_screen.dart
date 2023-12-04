@@ -8,12 +8,27 @@ class GameOverScreen extends StatelessWidget {
   const GameOverScreen({Key? key, required this.game}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Material(
-        color: Colors.black38,
-        child: Center(
+  Widget build(BuildContext context) => SizedBox(
+    height: game.size.y,
+    width: game.size.x,
+    child: Material(
+          color: Colors.black38,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
+              game.bird.lastScore == 0
+                  ? const SizedBox()
+                  : Text(
+                    'Highest Score: ${game.bird.lastScore}',
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.orange,
+                      fontFamily: 'Game',
+                    ),
+                  ),
+              const SizedBox(height: 10),
               Text(
                 'Score: ${game.bird.score}',
                 style: const TextStyle(
@@ -36,7 +51,7 @@ class GameOverScreen extends StatelessWidget {
             ],
           ),
         ),
-      );
+  );
 
   void onRestart() {
     game.bird.reset();

@@ -13,6 +13,7 @@ class Bird extends SpriteGroupComponent<BirdMovement>
   Bird();
 
   int score = 0;
+  int lastScore = 0;
 
   @override
   Future<void> onLoad() async {
